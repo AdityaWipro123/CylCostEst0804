@@ -4,7 +4,7 @@ import json
 import os
 
 # === CONFIG ===
-SAVE_FOLDER = "D:/CostEstApp/Model"
+SAVE_FOLDER = "./Model"
 
 # === Map label to Sr No ===
 model_map = {
