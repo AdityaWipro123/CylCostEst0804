@@ -23,14 +23,14 @@ categorical_options = {
 # === Numerical input configurations ===
 numerical_config = {
     "Pressure": {"min": 150, "max": 500, "step": 5, "default": 250},
-    "Bore": {"min": 50, "max": 500, "step": 1, "default": 100},
-    "Rod diameter": {"min": 50, "max": 500, "step": 1, "default": 75},
+    "Bore": {"min": 10, "max": 500, "step": 1, "default": 100},
+    "Rod diameter": {"min": 10, "max": 500, "step": 1, "default": 75},
     "Stroke": {"min": 100, "max": 5000, "step": 1, "default": 750},
-    "Tube_ID": {"min": 50, "max": 500, "step": 1, "default": 100},
-    "Tube_OD": {"min": 50, "max": 500, "step": 1, "default": 120},
+    "Tube_ID": {"min": 10, "max": 500, "step": 1, "default": 100},
+    "Tube_OD": {"min": 10, "max": 500, "step": 1, "default": 120},
     "Rod_Length": {"min": 100, "max": 5000, "step": 1, "default": 900},
-    "CEC_Thickness": {"min": 50, "max": 500, "step": 1, "default": 100},
-    "Piston_Thickness": {"min": 50, "max": 500, "step": 1, "default": 100},
+    "CEC_Thickness": {"min": 10, "max": 500, "step": 1, "default": 100},
+    "Piston_Thickness": {"min": 10, "max": 500, "step": 1, "default": 100},
 }
 
 # === Streamlit App ===
