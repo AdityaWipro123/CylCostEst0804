@@ -55,22 +55,52 @@ try:
 except:
     encoders = {}
 
+# st.subheader(f"Enter inputs for Model {model_label}")
+
+# # === Step 2: Generate input fields ===
+# user_input = []
+# for feature in selected_features:
+#     if feature in categorical_options:
+#         val = st.selectbox(f"{feature}:", categorical_options[feature])
+#     elif feature in numerical_config:
+#         cfg = numerical_config[feature]
+#         val = st.slider(f"{feature}:", min_value=cfg["min"], max_value=cfg["max"], 
+#                         step=cfg["step"], value=cfg["default"])
+#     else:
+#         val = st.number_input(f"{feature}:", value=0.0)
+#     user_input.append(val)
+
+# # === Step 3: Predict ===
+# if st.button("Predict Overall Cost"):
+#     input_array = []
+#     for feature, val in zip(selected_features, user_input):
+#         if feature in encoders:
+#             val = encoders[feature].transform([val])[0]
+#         input_array.append(val)
+
+#     prediction = model.predict([input_array])[0]
+#     st.success(f"Predicted Overall Cost: ₹{prediction:,.2f}")
+
+
 st.subheader(f"Enter inputs for Model {model_label}")
 
 # === Step 2: Generate input fields ===
 user_input = []
 for feature in selected_features:
+    st.markdown(f"<h5 style='font-size:18px'>{feature}:</h5>", unsafe_allow_html=True)
+    
     if feature in categorical_options:
-        val = st.selectbox(f"{feature}:", categorical_options[feature])
+        val = st.selectbox("", categorical_options[feature], key=feature)
     elif feature in numerical_config:
         cfg = numerical_config[feature]
-        val = st.slider(f"{feature}:", min_value=cfg["min"], max_value=cfg["max"], 
-                        step=cfg["step"], value=cfg["default"])
+        val = st.slider("", min_value=cfg["min"], max_value=cfg["max"], 
+                        step=cfg["step"], value=cfg["default"], key=feature)
     else:
-        val = st.number_input(f"{feature}:", value=0.0)
+        val = st.number_input("", value=0.0, key=feature)
+
     user_input.append(val)
 
-# === Step 3: Predict ===
+# === Step 3: Predict and Show Range ===
 if st.button("Predict Overall Cost"):
     input_array = []
     for feature, val in zip(selected_features, user_input):
@@ -79,4 +109,8 @@ if st.button("Predict Overall Cost"):
         input_array.append(val)
 
     prediction = model.predict([input_array])[0]
-    st.success(f"Predicted Overall Cost: ₹{prediction:,.2f}")
+    lower = prediction * 0.95
+    upper = prediction * 1.05
+
+    st.success(f"💰 Estimated Cost Range: ₹{lower:,.2f} – ₹{upper:,.2f}")
+    
